@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+
+@use "./stepper/stepper-theme" as stepper;
+@use "src/styles/components/button/button-theme" as button;
+
+@mixin theme($theme) {
+  @include mat.stepper-theme($theme);
+  @include mat.button-theme($theme);
+  @include mat.datepicker-theme($theme);
+  @include mat.form-field-theme($theme);
+  @include mat.input-theme($theme);
+  @include mat.select-theme($theme);
+  @include stepper.color($theme);
+  @include button.density();
+}

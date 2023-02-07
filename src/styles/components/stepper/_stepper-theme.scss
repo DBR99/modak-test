@@ -1,0 +1,12 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($theme) {
+  $background: mat.get-color-config($theme);
+  $modak-primary: map.get($background, 'primary');
+  .mat-stepper-horizontal, .mat-stepper-vertical {
+    background-color: mat.get-color-from-palette($modak-primary, 50);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+}

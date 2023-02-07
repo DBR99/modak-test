@@ -1,0 +1,34 @@
+@use '@angular/material' as mat;
+@use "./styles/components/index" as components;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$teal-palette, 800);
+$accent: mat.define-palette(mat.$teal-palette);
+$warn: mat.define-palette(mat.$deep-orange-palette, A200);
+
+$modak-theme: mat.define-light-theme((
+  color:(
+    primary: $primary,
+    accent: $accent,
+    warn: $warn
+  ),
+  typography: mat.define-typography-config(
+    $font-family: Poppins,
+
+  )
+));
+
+@include components.theme($modak-theme);
+
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}

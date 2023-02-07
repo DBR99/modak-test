@@ -1,0 +1,94 @@
+<div class="order-confirmation">
+  <mat-stepper linear>
+    <ng-template matStepperIcon="home">
+      <mat-icon>home</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="form">
+      <mat-icon>format_align_center</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="last">
+      <mat-icon>done_all</mat-icon>
+    </ng-template>
+
+    <mat-step [stepControl]="personalInfo" [editable]="isEditable">
+
+      <form class="order-confirmation__form" [formGroup]="personalInfo">
+        <ng-template matStepLabel>Personal information</ng-template>
+
+        <p class="order-confirmation__form__caption"> Please provide us with your personal information to send you the
+          item</p>
+
+        <mat-form-field class="order-confirmation__form__field" color="accent">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput [matDatepicker]="datepicker" formControlName="dateOfBirth">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+          <mat-hint align="end" *ngIf="submittedPersonalInfo && personalInfoForm['dateOfBirth'].errors">Please select
+            your Date of Birth.
+          </mat-hint>
+        </mat-form-field>
+
+
+        <mat-form-field class="order-confirmation__form__field">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option value="M">Man</mat-option>
+            <mat-option value="W">Woman</mat-option>
+            <mat-option value="D">Two Spirit</mat-option>
+            <mat-option value="NB">Non Binary</mat-option>
+            <mat-option value="O">Other Option</mat-option>
+          </mat-select>
+          <mat-hint align="end"
+                    *ngIf=" submittedPersonalInfo && personalInfoForm['gender'].errors">Please select an option.
+          </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="order-confirmation__form__field">
+          <mat-label>ID Number</mat-label>
+          <input matInput formControlName="id" placeholder="Last name, First name" required>
+          <mat-hint align="end" *ngIf="submittedPersonalInfo && personalInfoForm['id'].errors">ID Number must be at
+            least three characters
+            long.
+          </mat-hint>
+        </mat-form-field>
+
+        <div>
+          <button color="primary" mat-raised-button matStepperNext (click)="submitPersonalInfo()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step a [editable]="isEditable">
+      <form class="order-confirmation__form" [formGroup]="addressInfo">
+        <ng-template matStepLabel>Address</ng-template>
+
+        <mat-form-field class="order-confirmation__form__field">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required>
+          <mat-hint align="end" *ngIf="submittedAddressInfo && addressInfoForm['address'].errors">ID Number must be at
+            least three characters
+            long.
+          </mat-hint>
+        </mat-form-field>
+
+        <div class="order-confirmation__form__buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button color="primary" mat-raised-button matStepperNext (click)="confirm()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step>
+      <ng-template matStepLabel>Payment</ng-template>
+      <p>¡Oh how fortunate, your order will be 100% free!, Thank you for your trust in us.</p>
+      <div class="order-confirmation__last-step"><img src="./assets/gift.png"></div>
+    </mat-step>
+  </mat-stepper>
+</div>
